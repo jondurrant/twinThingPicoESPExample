@@ -16,7 +16,12 @@ set(PICO_CXX_ENABLE_RTTI 1)
 # Initialize the SDK
 pico_sdk_init()
 
+include("lib/json-maker.cmake")
+include("lib/tiny-json.cmake")
+
 add_subdirectory(src)
+
+
 
 set(TWIN_THING_PICO_CONFIG_PATH ${CMAKE_CURRENT_LIST_DIR}/src/config)
 
@@ -24,8 +29,8 @@ set(TWIN_THING_PICO_CONFIG_PATH ${CMAKE_CURRENT_LIST_DIR}/src/config)
 include("lib/twinThingPicoESP/twinThingPicoESP.cmake")
 include("lib/FreeRTOS-Kernel.cmake")
 include("lib/lwesp.cmake")
-include("lib/json-maker.cmake")
-include("lib/tiny-json.cmake")
+
+
 
 
 
