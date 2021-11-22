@@ -28,4 +28,7 @@
 #define MQTT_TOPIC_GROUP_HEADER "GRP"
 
 
+#define STATE_MSG_BUF_LEN 200
+
+
 #endif

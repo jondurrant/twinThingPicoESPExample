@@ -1,9 +1,10 @@
 add_executable(${NAME}
         main.cpp
+        #StateExample.cpp
         )
 
 # Pull in our pico_stdlib which pulls in commonly used features
-target_link_libraries(${NAME} pico_stdlib FreeRTOS lwesp twinThingPicoESP)
+target_link_libraries(${NAME} pico_stdlib FreeRTOS lwesp twinThingPicoESP jason-maker tiny-json)
 
 # enable usb output, disable uart output
 pico_enable_stdio_usb(${NAME} 1)
