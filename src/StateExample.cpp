@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include "json-maker.h"
+#include "json-maker/json-maker.h"
 
 #define RGBSLOT 3
 #define ONSLOT  4

@@ -26,14 +26,17 @@
 
 #include "MQTTAgent.h"
 #include "MQTTRouterPing.h"
+#include "MQTTRouterTwin.h"
 
+#include "StateExample.h"
 
 
 
 
 //MQTTConnection mqttConn;
 //MQTTConnTask mqttTask;
-MQTTRouterPing mqttRouter;
+//MQTTRouterPing mqttRouter;
+MQTTRouterTwin mqttRouter;
 MQTTAgent mqttAgent(512, 512);
 
 
@@ -42,57 +45,18 @@ char mqttUser[] = MQTTUSER;
 char mqttPwd[] = MQTTPASSWD;
 lwesp_port_t mqttPort = MQTTPORT;
 
-static const lwesp_mqtt_client_info_t
-mqtt_client_info = {
-	.id = MQTTUSER,
+StateExample state;
 
-    /* Server login data */
-    .user = MQTTUSER,
-    .pass = MQTTPASSWD,
-
-	.keep_alive = 10,
-
-	.will_topic = "TNG/jon/LC",
-	.will_message = "{\'online\': 0}",
-	.will_qos = LWESP_MQTT_QOS_AT_LEAST_ONCE
-
-};
 
 
 
 void startMQTT(){
 
 	mqttAgent.credentials(mqttUser, mqttPwd);
-	mqttRouter.init(mqttAgent.getId(), &mqttAgent);
+	mqttRouter.init(mqttAgent.getId(), &mqttAgent, &state);
 	mqttAgent.setRouter(&mqttRouter);
 	mqttAgent.start(tskIDLE_PRIORITY+1);
 	mqttAgent.connect(mqttTarget, mqttPort, true);
-
-
-	/*
-	lwesp_mqtt_client_api_p client;
-	lwesp_mqtt_conn_status_t conn_status;
-	lwesp_mqtt_client_api_buf_p buf;
-	lwespr_t res;
-
-	printf("Starting MQTT\n");
-	printf("TEST DBG\n");
-
-	client = lwesp_mqtt_client_api_new(256, 128);
-	if (client == NULL) {
-		printf("lwesp mqtt client failed\n");
-		return;
-	}
-
-	conn_status = lwesp_mqtt_client_api_connect(client, mqttTarget, mqttPort, &mqtt_client_info);
-
-	if (conn_status == LWESP_MQTT_CONN_STATUS_ACCEPTED) {
-		printf("Connected and accepted!\r\n");
-		printf("Client is ready to subscribe and publish to new messages\r\n");
-	} else {
-		printf("Connect API response: %d\r\n", (int)conn_status);
-	}
-	*/
 
 
 	/*

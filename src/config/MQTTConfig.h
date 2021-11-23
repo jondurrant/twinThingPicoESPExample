@@ -29,6 +29,7 @@
 
 
 #define STATE_MSG_BUF_LEN 200
+#define MQTT_JSON_BUF_NUM 20 //Number of JSON objects within payloads
 
 
 #endif
