@@ -166,6 +166,15 @@ void StateExample::updateFromJson(json_t const *json){
 		}
 	}
 
+}
 
-
+/***
+ * Retrieve state of object in JSON format
+ * @param buf - buffer to write to
+ * @param len - length of buffer
+ * @return length of json or zero if we ran out of space
+ */
+unsigned int StateExample::state(char *buf, unsigned int len){
+	updateTemp();
+	return StateTemp::state(buf, len);
 }

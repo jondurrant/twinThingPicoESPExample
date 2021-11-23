@@ -63,6 +63,15 @@ public:
 	 */
 	virtual void updateFromJson(json_t const *json);
 
+	/***
+	 * Retrieve state of object in JSON format
+	 * @param buf - buffer to write to
+	 * @param len - length of buffer
+	 * @return length of json or zero if we ran out of space
+	 */
+	virtual unsigned int state(char *buf, unsigned int len) ;
+
+
 protected:
 	/***
 	 * Retrieve RGB in json format

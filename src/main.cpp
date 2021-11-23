@@ -29,8 +29,7 @@
 #include "MQTTRouterTwin.h"
 
 #include "StateExample.h"
-
-
+#include "ExampleAgentObserver.h"
 
 
 //MQTTConnection mqttConn;
@@ -46,6 +45,7 @@ char mqttPwd[] = MQTTPASSWD;
 lwesp_port_t mqttPort = MQTTPORT;
 
 StateExample state;
+ExampleAgentObserver agentObs;
 
 
 
@@ -53,6 +53,7 @@ StateExample state;
 void startMQTT(){
 
 	mqttAgent.credentials(mqttUser, mqttPwd);
+	mqttAgent.setObserver(&agentObs);
 	mqttRouter.init(mqttAgent.getId(), &mqttAgent, &state);
 	mqttAgent.setRouter(&mqttRouter);
 	mqttAgent.start(tskIDLE_PRIORITY+1);

@@ -1,6 +1,7 @@
 add_executable(${NAME}
         main.cpp
         StateExample.cpp
+        ExampleAgentObserver.cpp
         )
 
 # Pull in our pico_stdlib which pulls in commonly used features
