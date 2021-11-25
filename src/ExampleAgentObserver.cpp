@@ -8,6 +8,10 @@
 #include "ExampleAgentObserver.h"
 #include "MQTTConfig.h"
 
+#include "hardware/rtc.h"
+#include "pico/stdlib.h"
+#include "pico/util/datetime.h"
+
 ExampleAgentObserver::ExampleAgentObserver() {
 	// TODO Auto-generated constructor stub
 
@@ -31,5 +35,14 @@ void ExampleAgentObserver::MQTTSend(){
 }
 
 void ExampleAgentObserver::MQTTRecv(){
-	LogInfo(("Recv"));
+	datetime_t t;
+	rtc_get_datetime(&t);
+	LogInfo(("Recv at %d-%d-%d %d:%d:%d",
+			t.year,
+			t.month,
+			t.day,
+			t.hour,
+			t.min,
+			t.sec
+			));
 }

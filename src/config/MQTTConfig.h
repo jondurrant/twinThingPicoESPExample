@@ -37,7 +37,7 @@
 
 
 #define ESP01_RST_PIN 11
-#define ESP01_RST_DELAY 100
+#define ESP01_RST_DELAY 2000
 #define ESP01_SNTP_TIMEZONE 0
 #define ESP01_SNTP_LOCAL_HOST "nas3.local.jondurrant.com"
 
