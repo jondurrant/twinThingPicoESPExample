@@ -5,7 +5,15 @@ add_executable(${NAME}
         )
 
 # Pull in our pico_stdlib which pulls in commonly used features
-target_link_libraries(${NAME} pico_stdlib FreeRTOS lwesp twinThingPicoESP json_maker tiny_json)
+target_link_libraries(${NAME} 
+	pico_stdlib 
+	FreeRTOS 
+	lwesp 
+	twinThingPicoESP 
+	json_maker 
+	tiny_json
+	hardware_rtc
+)
 
 # enable usb output, disable uart output
 pico_enable_stdio_usb(${NAME} 1)

@@ -53,6 +53,18 @@ init_thread(void* pvParameters) {
 
 	//Connect to WiFi
 	if (WifiHelper::connectToAp(SID, PASSWD)){
+		char ips[16];
+		char macs[15];
+		WifiHelper::getIPAddressStr(ips);
+		printf("WIFI IP %s\n", ips);
+		if (WifiHelper::getMACAddressStr(macs)){
+			printf("MAC %s\n", macs);
+		} else {
+			printf("MAC NOT AVAILABLE\n");
+		}
+		WifiHelper::syncRTCwithSNTP();
+
+
 		//Set up the credentials so we have an ID for our thing
 		mqttAgent.credentials(mqttUser, mqttPwd);
 		mqttRouter.init(mqttAgent.getId(), &mqttAgent);
