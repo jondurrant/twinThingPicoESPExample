@@ -85,7 +85,7 @@ init_thread(void* pvParameters) {
 		//Setup and start the mqttAgent
 		mqttAgent.setObserver(&agentObs);
 		mqttAgent.setRouter(&mqttRouter);
-		mqttAgent.connect(mqttTarget, mqttPort, true);
+		mqttAgent.connect(mqttTarget, mqttPort, true, true);
 		mqttAgent.start(tskIDLE_PRIORITY+1);
 
 	}

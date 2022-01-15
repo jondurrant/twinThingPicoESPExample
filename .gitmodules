@@ -13,3 +13,6 @@
 [submodule "lib/tiny-json"]
 	path = lib/tiny-json
 	url = https://github.com/rafagafe/tiny-json
+[submodule "lib/lwespFork"]
+	path = lib/lwespFork
+	url = https://github.com/jondurrant/lwespFork
