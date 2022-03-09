@@ -64,10 +64,14 @@ init_thread(void* pvParameters) {
 		}
 		WifiHelper::syncRTCwithSNTP();
 
-
 		//Set up the credentials so we have an ID for our thing
 		mqttAgent.credentials(mqttUser, mqttPwd);
 		mqttRouter.init(mqttAgent.getId(), &mqttAgent);
+
+		printf("Connecting to: %s(%d) as %s:%s:%s\n",
+				mqttTarget, mqttPort, mqttAgent.getId(),
+				mqttUser, mqttPwd
+				);
 
 		//Twin agent to manage the state
 		xTwin.setStateObject(&state);
@@ -85,7 +89,7 @@ init_thread(void* pvParameters) {
 		//Setup and start the mqttAgent
 		mqttAgent.setObserver(&agentObs);
 		mqttAgent.setRouter(&mqttRouter);
-		mqttAgent.connect(mqttTarget, mqttPort, true, true);
+		mqttAgent.connect(mqttTarget, mqttPort, true, false);
 		mqttAgent.start(tskIDLE_PRIORITY+1);
 
 	}
